@@ -1,6 +1,10 @@
 ---
 name: machine-context
 description: Use when a task may need another machine, the Tailscale tailnet, or choosing how to preview a dev server in T3 Code vs reaching a service across machines
+disable-model-invocation: true
+user-invocable: true
+metadata:
+  opencode/autoinvoke: false
 ---
 
 # Machine context

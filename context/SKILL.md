@@ -1,6 +1,10 @@
 ---
 name: context
 description: Use skill when user asks questions about a specific repo or codebase that is not the CWD
+disable-model-invocation: true
+user-invocable: true
+metadata:
+  opencode/autoinvoke: false
 ---
 
 # Context
