@@ -1,10 +1,10 @@
 ---
 name: commit
 description: "Use when the user asks the agent to commit changes."
-disable-model-invocation: true
+disable-model-invocation: false
 user-invocable: true
 metadata:
-  opencode/autoinvoke: false
+  opencode/autoinvoke: true
 ---
 
 # Commit Changes
