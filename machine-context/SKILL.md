@@ -19,6 +19,10 @@ Determine which machine you are on before making machine-specific decisions. Use
 
 You have permission to connect to either computer, run commands, move files, and hop between them as needed. Choose the machine best suited to the task. Prefer `nixos` for heavy work, services, and long-running jobs. Do not wait for separate permission unless the requested task itself requires confirmation.
 
+## Scratch work
+
+If you are developing, building, or adding extra files and the work is not already in a repo the user named, do not dump it in a home directory or a random folder on `nixos` or `dawin`. Create a new directory under `/tmp` on the machine you are using, put everything there, and give the user the full path. Leave it in `/tmp` unless they ask to move it somewhere specific.
+
 ## T3 Code preview vs Tailscale
 
 In T3 Code, prefer live `mcp__t3_code__preview_*` tools when a task needs a browser preview and they appear in the live tool registry. Do not assume they are missing from a short static listing.
