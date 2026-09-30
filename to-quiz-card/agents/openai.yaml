@@ -1,0 +1,5 @@
+interface:
+  display_name: "To quiz card"
+  short_description: "Review session learning and publish approved Anki cards"
+policy:
+  allow_implicit_invocation: false
