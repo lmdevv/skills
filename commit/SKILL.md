@@ -1,15 +1,15 @@
 ---
 name: commit
 description: "Use when the user asks the agent to commit changes."
-disable-model-invocation: false
+disable-model-invocation: true
 user-invocable: true
 metadata:
-  opencode/autoinvoke: true
+  opencode/autoinvoke: false
 ---
 
-# Commit Changes
+# Commit changes
 
-## Quick Commit
+## Quick commit
 
 If you made changes in this conversation thread, you already know what changed. Run a quick verification, then commit directly:
 
@@ -21,7 +21,7 @@ If you made changes in this conversation thread, you already know what changed. 
 
 Do **not** re-read every file or diff line-by-line. You already made the changes.
 
-## Commit Format
+## Commit format
 
 **Title:**
 
@@ -40,17 +40,26 @@ type(scope): summary
 - explain any important risk, migration, or follow-up.
 ```
 
-**Co-author trailer (when you made the changes):**
+## Co-authors
+
+When you made changes, add separate trailers for the model and coding tool. Add a trailer for each other model that contributed. Do not put harness or thinking metadata in brackets inside an author name.
 
 ```text
-Co-authored-by: <provider>/<model-name> [harness: <harness>; thinking: <level>] <noreply@<provider>.ai>
+Co-authored-by: <provider>/<model-name> <noreply@<provider-domain>>
+Co-authored-by: <coding-tool> <noreply@<tool-domain>>
 ```
 
-Always try to include provider and model, then harness, then thinking level when available. Determine them from your runtime context first, then environment variables such as `PI_PROVIDER`, `PI_MODEL`, `PI_REASONING_LEVEL`, or harness-specific equivalents. Omit unavailable fields rather than inventing them. Use a provider-appropriate noreply domain.
+Use runtime context first, then environment variables such as `PI_PROVIDER` and `PI_MODEL`. Omit unknown identities or email addresses. Do not invent them. Omit thinking level, it is not an author. Deduplicate trailers.
 
-Derive slug from the current model ID:
+Derive the model name from its ID:
 
 - Normalize the provider prefix (e.g. `opencode-go` -> `opencode`, `anthropic` -> `anthropic`, `openai` -> `openai`).
 - Strip trailing deployment qualifiers (e.g. `claude-sonnet-4-20250514` -> `claude-sonnet-4`).
 - Examples: `opencode/glm-5.1`, `anthropic/claude-sonnet-4`, `openai/gpt-5.5`.
-- Use `noreply@<provider>.ai` (or `.com` for providers like Google).
+
+Example with known co-author addresses:
+
+```text
+Co-authored-by: anthropic/claude-sonnet-4 <noreply@anthropic.com>
+Co-authored-by: Claude Code <noreply@anthropic.com>
+```
